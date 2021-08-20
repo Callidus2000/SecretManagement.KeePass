@@ -1,6 +1,9 @@
 
 Describe 'Register-KeepassSecretVault' {
     BeforeAll {
+        Get-Module 'SecretManagement.KeePass' | Remove-Module -Force
+        Get-Module 'Microsoft.Powershell.SecretManagement' | Remove-Module -Force
+
         Import-Module "$PSScriptRoot/../SecretManagement.KeePass.psd1" -Force
         $SCRIPT:Mocks = Resolve-Path "$PSScriptRoot/../SecretManagement.KeePass.Extension/Tests/Mocks"
         $SCRIPT:TestDB = Join-Path $Mocks 'TestdbKeyFile.kdbx'
